@@ -10,19 +10,19 @@ In the comments, `/…` in front of the string denotes that the string
 returned actually starts with your `node_modules` directory's path.
 
 ```javascript
-var pathSteps = require('path-steps'),
+var paSt = require('path-steps'), modFn = module.filename,
   pkgDefAbs = require.resolve('path-steps/package.json'), // …
-  testName = pathLib.basename(module.filename);
+  testName = pathLib.basename(modFn);
 
-pathSteps.join(['a', 'b'], [], 'c', '', ['d']);   // -> "a/b/c/d"
-pathSteps.fromCwd(testName);                 // -> /…"/path-steps/test/usage.js"
-pathSteps.fromCwd(['..', 'package.json']);   // -> /…"/path-steps/package.json"
-pathSteps.fromCwd('', pkgDefAbs);            // -> "../package.json"
-pathSteps.fromCwd('', module.filename);      // -> "usage.js"
-pathSteps.fromCwd(['..', '..'], module.filename); // -> "path-steps/test/usage.js"
-pathSteps.fromCwd(['..', 'doc'], module.filename);// -> "../test/usage.js"
-pathSteps.resolve(testName);                 // -> /…"/path-steps/test/usage.js"
-pathSteps.resolve(['..', 'package.json']);   // -> /…"/path-steps/package.json"
+paSt.join(['a', 'b'], [], 'c', '', ['d']); // -> "a/b/c/d"
+paSt.fromCwd(testName);                    // -> /…"/path-steps/test/usage.js"
+paSt.fromCwd(['..', 'package.json']);      // -> /…"/path-steps/package.json"
+paSt.fromCwd('', pkgDefAbs);               // -> "../package.json"
+paSt.fromCwd('', modFn);                   // -> "usage.js"
+paSt.fromCwd(['..', '..'], modFn);         // -> "path-steps/test/usage.js"
+paSt.fromCwd(['..', 'doc'], modFn);        // -> "../test/usage.js"
+paSt.resolve(testName);                    // -> /…"/path-steps/test/usage.js"
+paSt.resolve(['..', 'package.json']);      // -> /…"/path-steps/package.json"
 ```
 
 (Generated with `./doc/usage.sed test/usage.js` – if you can,

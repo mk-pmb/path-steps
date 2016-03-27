@@ -2,43 +2,43 @@
 /* -*- tab-width: 2 -*- */
 'use strict';
 
-var pathSteps = require('path-steps'),
+var paSt = require('path-steps'), modFn = module.filename,
   pkgDefAbs = require.resolve('path-steps/package.json'),
   pathLib = require('path'),
   D = require('./lib_demo.js'),
-  testDir = pathLib.dirname(module.filename),
-  testName = pathLib.basename(module.filename);
+  testDir = pathLib.dirname(modFn),
+  testName = pathLib.basename(modFn);
 
 process.chdir(testDir);
 
 D.veq('join([a b] [] c "" [d])', pathLib.join('a', 'b', 'c', '', 'd'),
-  pathSteps.join(['a', 'b'], [], 'c', '', ['d']));
+  paSt.join(['a', 'b'], [], 'c', '', ['d']));
   // -> "a/b/c/d"
 
-D.veq('fromCwd(sub)', module.filename,
-  pathSteps.fromCwd(testName));
+D.veq('fromCwd(sub)', modFn,
+  paSt.fromCwd(testName));
   // -> /…"/path-steps/test/usage.js"
 D.veq('fromCwd(../sub)', pkgDefAbs,
-  pathSteps.fromCwd(['..', 'package.json']));
+  paSt.fromCwd(['..', 'package.json']));
   // -> /…"/path-steps/package.json"
 D.veq('fromCwd("", parentAbs)', pathLib.join('..', 'package.json'),
-  pathSteps.fromCwd('', pkgDefAbs));
+  paSt.fromCwd('', pkgDefAbs));
   // -> "../package.json"
 D.veq('fromCwd("", selfAbs)', testName,
-  pathSteps.fromCwd('', module.filename));
+  paSt.fromCwd('', modFn));
   // -> "usage.js"
 D.veq('fromCwd(../.., selfAbs)', pathLib.join('path-steps', 'test', testName),
-  pathSteps.fromCwd(['..', '..'], module.filename));
+  paSt.fromCwd(['..', '..'], modFn));
   // -> "path-steps/test/usage.js"
 D.veq('fromCwd(../doc, selfAbs)', pathLib.join('..', 'test', testName),
-  pathSteps.fromCwd(['..', 'doc'], module.filename));
+  paSt.fromCwd(['..', 'doc'], modFn));
   // -> "../test/usage.js"
 
-D.veq('resolve(selfRel)', module.filename,
-  pathSteps.resolve(testName));
+D.veq('resolve(selfRel)', modFn,
+  paSt.resolve(testName));
   // -> /…"/path-steps/test/usage.js"
 D.veq('resolve([.. sub])', pkgDefAbs,
-  pathSteps.resolve(['..', 'package.json']));
+  paSt.resolve(['..', 'package.json']));
   // -> /…"/path-steps/package.json"
 
 D.ok(module);
