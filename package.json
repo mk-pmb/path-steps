@@ -1,0 +1,26 @@
+{
+  "name": "path-steps",
+  "version": "0.1.0",
+  "description": "Proxy for your \"path\" module, with some functions enhanced to accept arrays as paths.",
+  "main": "pathsteps.js",
+  "scripts": {
+    "test": "nodejs test/usage.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-pmb/path-steps-js.git"
+  },
+  "keywords": [
+    "file",
+    "path",
+    "filepath",
+    "array",
+    "autojoin"
+  ],
+  "author": "M.K.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mk-pmb/path-steps-js/issues"
+  },
+  "homepage": "https://github.com/mk-pmb/path-steps-js#readme"
+}
