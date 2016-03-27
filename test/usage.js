@@ -27,6 +27,12 @@ D.veq('fromCwd("", parentAbs)', pathLib.join('..', 'package.json'),
 D.veq('fromCwd("", selfAbs)', testName,
   pathSteps.fromCwd('', module.filename));
   // -> "usage.js"
+D.veq('fromCwd(../.., selfAbs)', pathLib.join('path-steps', 'test', testName),
+  pathSteps.fromCwd(['..', '..'], module.filename));
+  // -> "path-steps/test/usage.js"
+D.veq('fromCwd(../doc, selfAbs)', pathLib.join('..', 'test', testName),
+  pathSteps.fromCwd(['..', 'doc'], module.filename));
+  // -> "../test/usage.js"
 
 D.veq('resolve(selfRel)', module.filename,
   pathSteps.resolve(testName));
